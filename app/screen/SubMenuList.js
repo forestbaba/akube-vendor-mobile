@@ -3,36 +3,23 @@ import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-nati
 import { Container, Icon, Content, Item, Right } from 'native-base'
 import Empty from '../reusable/Empty'
 import MenuItem from '../reusable/MenuItem'
-import dress1 from '../../assets/hanger.svg'
+import empty from '../../assets/box.svg'
 
-const ProductList = ({ navigation }) => {
+const SubProductList = ({ navigation }) => {
 
     const addCategory = () => {
-        navigation.navigate('addcategoryform')
-    }
-    const gotoSublist = () => {
-        navigation.navigate('subproduct')
+        navigation.navigate('addcategoryitemform')
     }
     return (
         <ScrollView>
             <Container style={styles.container}>
-                <View style={styles.content}>
-                    <Text style={styles.productCount}>0</Text>
-                    <Text style={styles.productCountTitle}>Content</Text>
-                    <Right>
-                        <TouchableOpacity onPress={addCategory}>
-                            <Icon active name="add" />
-                        </TouchableOpacity>
-                    </Right>
-                </View>
                 <Empty style={styles.empty}
                     onGotoAddCategory={addCategory}
                     title={'No product is found'}
                     details={'No Product is found in your Boutique'}
-                    icon={dress1}
+                    icon={empty}
                 />
                 <MenuItem
-                    gotoSublist={gotoSublist}
                     menutitle={"Menus"}
                     thumbnail={"https://images.unsplash.com/photo-1591472053294-031b45ac2f96?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=348&q=80"}
                 />
@@ -64,4 +51,4 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     }
 })
-export default ProductList;
+export default SubProductList;

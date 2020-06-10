@@ -4,18 +4,20 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import MIcon from 'react-native-vector-icons/MaterialIcons'
 import EIcon from 'react-native-vector-icons/Entypo'
 
-const MenuItem = ({ thumbnail, menutitle, clickEdit, clickDelete }) => {
+const MenuItem = ({ thumbnail, menutitle, clickEdit, clickDelete, gotoSublist }) => {
     return (
-        <View style={styles.container}>
-            <Thumbnail large source={{ uri: thumbnail }} />
-            <Text>{menutitle}</Text>
-            <TouchableOpacity onPress={clickEdit}>
-                <EIcon name="pencil" size={25} color={'black'} />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={clickDelete}>
-                <MIcon name="delete-forever" size={25} color={'black'} />
-            </TouchableOpacity>
-        </View >
+        <TouchableOpacity onPress={gotoSublist}>
+            <View style={styles.container}>
+                <Thumbnail large source={{ uri: thumbnail }} />
+                <Text>{menutitle}</Text>
+                <TouchableOpacity onPress={clickEdit}>
+                    <EIcon name="pencil" size={25} color={'black'} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={clickDelete}>
+                    <MIcon name="delete-forever" size={25} color={'black'} />
+                </TouchableOpacity>
+            </View >
+        </TouchableOpacity>
     )
 }
 const styles = StyleSheet.create({
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         elevation: 5,
-        
+
 
 
         marginLeft: 0,

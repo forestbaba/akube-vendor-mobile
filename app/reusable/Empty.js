@@ -3,20 +3,21 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Container } from 'native-base'
 import SvgUri from 'react-native-svg-uri'
 import ActionButton from './ActionButton'
+import dress from '../../assets/dress.svg'
 
-const Empty = ({ onGotoAddCategory }) => {
+const Empty = ({ onGotoAddCategory, title, details,icon }) => {
     return (
         <Container style={styles.container}>
             <SvgUri
                 style={{ marginRight: 30, width: 30 }}
                 width='50'
                 height='100'
-                source={require('../../assets/dress.svg')}
+                source={icon}
             />
-            <Text style={styles.noProductTitle}>No product is found</Text>
-            <Text>No Product is found in your Boutique</Text>
-            <ActionButton onPress={onGotoAddCategory} title={'Add product'}/>
-           
+            <Text style={styles.noProductTitle}>{title}</Text>
+            <Text>{details}</Text>
+            <ActionButton onPress={onGotoAddCategory} title={'Add product'} />
+
         </Container>
     )
 }
