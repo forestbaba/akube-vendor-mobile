@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity,YellowBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ProductList from './app/screen/MenuList';
@@ -9,6 +9,15 @@ import AddCategoryItemForm from './app/screen/AddCategoryItemForm';
 import Login from './app/screen/Auth/Login';
 import Signup from './app/screen/Auth/Signup';
 import ForgotPassword from './app/screen/Auth/ForgotPassword';
+import { store } from './app/redux'
+import { Provider } from 'react-redux';
+import firebase from "firebase";
+import { firebaseConfig } from "./app/util/FirebaseInit";
+
+firebase.initializeApp(firebaseConfig);
+
+YellowBox.ignoreWarnings(['Setting a timer']);
+
 
 function HomeScreen({ navigation }) {
   return (
@@ -30,18 +39,20 @@ const Stack = createStackNavigator();
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-        <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Home" component={ProductList} />
-        <Stack.Screen name="subproduct" component={SubProductList} />
-        <Stack.Screen name="addcategoryform" component={AddCategoryForm} />
-        <Stack.Screen name="addcategoryitemform" component={AddCategoryItemForm} />
-        <Stack.Screen name="Next" component={NextScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+          <Stack.Screen name="Signup" component={Signup} />
+          <Stack.Screen name="Home" component={ProductList} />
+          <Stack.Screen name="subproduct" component={SubProductList} />
+          <Stack.Screen name="addcategoryform" component={AddCategoryForm} />
+          <Stack.Screen name="addcategoryitemform" component={AddCategoryItemForm} />
+          <Stack.Screen name="Next" component={NextScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
